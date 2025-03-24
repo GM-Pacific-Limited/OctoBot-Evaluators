@@ -1,127 +1,127 @@
-# OctoBot-Evaluators Documentation
+# OctoBot-Evaluators ドキュメント
 
-## Overview
-OctoBot-Evaluators is a component of the OctoBot trading bot ecosystem that provides market data analysis capabilities. It enables algorithmic traders to analyze market conditions and generate trading signals based on various evaluation methods.
+## 概要
+OctoBot-Evaluatorsは、OctoBot取引ボットエコシステムのコンポーネントで、市場データ分析機能を提供します。アルゴリズム取引者が市場状況を分析し、様々な評価方法に基づいて取引シグナルを生成することを可能にします。
 
-The module allows users to:
-- Analyze price data using technical indicators
-- Execute custom evaluation strategies via scripted evaluators
-- Process real-time market data
-- Combine multiple evaluation signals into cohesive trading strategies
-- Store and retrieve evaluation results through a structured matrix system
+このモジュールは、ユーザーに以下の機能を提供します：
+- テクニカル指標を使用した価格データの分析
+- スクリプト化された評価器を通じたカスタム評価戦略の実行
+- リアルタイム市場データの処理
+- 複数の評価シグナルを一貫した取引戦略に統合
+- 構造化されたマトリックスシステムを通じた評価結果の保存と取得
 
-## Core Architecture
-OctoBot-Evaluators is built around several key abstractions:
+## コアアーキテクチャ
+OctoBot-Evaluatorsはいくつかの重要な抽象化を中心に構築されています：
 
-### Evaluator Framework
-- `AbstractEvaluator`: Base class for all evaluators, defining the evaluation lifecycle
-- Specialized evaluator types:
-  - `TAEvaluator`: Technical analysis evaluator for price data
-  - `ScriptedEvaluator`: User-defined evaluation scripts
-  - `StrategyEvaluator`: High-level decision making based on other evaluators
-  - `SocialEvaluator`: Evaluator analyzing social signals
-  - `RealTimeEvaluator`: Evaluator for real-time data
+### 評価器フレームワーク
+- `AbstractEvaluator`：すべての評価器の基本クラスで、評価ライフサイクルを定義
+- 専門化された評価器タイプ：
+  - `TAEvaluator`：価格データのテクニカル分析評価器
+  - `ScriptedEvaluator`：ユーザー定義の評価スクリプト
+  - `StrategyEvaluator`：他の評価器に基づく高レベルの意思決定
+  - `SocialEvaluator`：ソーシャルシグナルを分析する評価器
+  - `RealTimeEvaluator`：リアルタイムデータの評価器
 
-### Matrix System
-- `Matrix`: Core data structure for storing evaluation results
-- `MatrixManager`: Utilities for interacting with the matrix
-- Hierarchical path-based data organization by exchange, cryptocurrency, symbol, etc.
+### マトリックスシステム
+- `Matrix`：評価結果を保存するためのコアデータ構造
+- `MatrixManager`：マトリックスと対話するためのユーティリティ
+- 取引所、暗号通貨、シンボルなどによる階層的なパスベースのデータ編成
 
-### Channel System
-- `EvaluatorChannel`: For distributing evaluator signals
-- `MatrixChannel`: For matrix updates and notifications
-- Publisher/subscriber model for asynchronous communication
+### チャネルシステム
+- `EvaluatorChannel`：評価器シグナルの配信用
+- `MatrixChannel`：マトリックス更新と通知用
+- 非同期通信のためのパブリッシャー/サブスクライバーモデル
 
-## Directory Structure
+## ディレクトリ構造
 ```
 octobot_evaluators/
-├── api/                  # Public API functions
-│   ├── evaluators.py     # API for managing evaluators
-│   ├── initialization.py # Setup functions
-│   ├── matrix.py         # Matrix API
-│   └── inspection.py     # Analysis tools
-├── evaluators/           # Core evaluator implementations
-│   ├── abstract_evaluator.py     # Base evaluator class
-│   ├── TA_evaluator.py           # Technical analysis
-│   ├── scripted_evaluator.py     # Custom script evaluator
-│   ├── strategy_evaluator.py     # Strategy implementation
-│   ├── social_evaluator.py       # Social media analysis
-│   ├── realtime_evaluator.py     # Real-time data analysis
-│   └── evaluator_factory.py      # Factory for creating evaluators
-├── matrix/               # Matrix system components
-│   ├── matrix.py         # Core matrix implementation
-│   └── matrix_manager.py # Matrix management utilities
-└── util/                 # Utility functions
+├── api/                  # 公開API関数
+│   ├── evaluators.py     # 評価器管理用API
+│   ├── initialization.py # セットアップ関数
+│   ├── matrix.py         # マトリックスAPI
+│   └── inspection.py     # 分析ツール
+├── evaluators/           # コア評価器実装
+│   ├── abstract_evaluator.py     # 基本評価器クラス
+│   ├── TA_evaluator.py           # テクニカル分析
+│   ├── scripted_evaluator.py     # カスタムスクリプト評価器
+│   ├── strategy_evaluator.py     # 戦略実装
+│   ├── social_evaluator.py       # ソーシャルメディア分析
+│   ├── realtime_evaluator.py     # リアルタイムデータ分析
+│   └── evaluator_factory.py      # 評価器作成ファクトリー
+├── matrix/               # マトリックスシステムコンポーネント
+│   ├── matrix.py         # コアマトリックス実装
+│   └── matrix_manager.py # マトリックス管理ユーティリティ
+└── util/                 # ユーティリティ関数
 ```
 
-## Evaluation Process
+## 評価プロセス
 
-1. **Initialization**:
-   - Evaluators are created and configured based on user settings
-   - Each evaluator registers itself with the matrix
-   - Time frames and symbols are established
+1. **初期化**：
+   - 評価器はユーザー設定に基づいて作成・設定される
+   - 各評価器はマトリックスに自身を登録する
+   - 時間枠とシンボルが確立される
 
-2. **Data Reception**:
-   - Market data is received through channels
-   - Data is distributed to the appropriate evaluators
+2. **データ受信**：
+   - 市場データはチャネルを通じて受信される
+   - データは適切な評価器に配信される
 
-3. **Evaluation**:
-   - Evaluators process the data according to their specific algorithms
-   - Results are stored in the matrix at the appropriate path
+3. **評価**：
+   - 評価器は特定のアルゴリズムに従ってデータを処理する
+   - 結果は適切なパスのマトリックスに保存される
 
-4. **Strategy Application**:
-   - Strategy evaluators combine signals from other evaluators
-   - Final trading decisions are derived from the combined evaluations
+4. **戦略適用**：
+   - 戦略評価器は他の評価器からのシグナルを組み合わせる
+   - 最終的な取引決定は組み合わされた評価から導き出される
 
-5. **Signal Distribution**:
-   - Trading signals are distributed to the trading components
+5. **シグナル配信**：
+   - 取引シグナルは取引コンポーネントに配信される
 
-## Evaluator Types
+## 評価器タイプ
 
-### Technical Analysis Evaluators
-These evaluators process OHLCV (Open-High-Low-Close-Volume) price data using technical indicators such as:
-- Moving averages
-- RSI, MACD, Bollinger Bands
-- Custom technical indicators
+### テクニカル分析評価器
+これらの評価器は、OHLCV（始値-高値-安値-終値-出来高）価格データを以下のようなテクニカル指標を使用して処理します：
+- 移動平均
+- RSI、MACD、ボリンジャーバンド
+- カスタムテクニカル指標
 
-### Social Evaluators
-These analyze data from social sources like:
-- Twitter/X sentiment
-- Reddit discussions
-- News feeds
-- Forum activity
+### ソーシャル評価器
+これらは以下のようなソーシャルソースからのデータを分析します：
+- Twitter/Xのセンチメント
+- Redditのディスカッション
+- ニュースフィード
+- フォーラム活動
 
-### Real-Time Evaluators
-These process immediate market data such as:
-- Order book changes
-- Trade ticks
-- Price movements
+### リアルタイム評価器
+これらは以下のような即時市場データを処理します：
+- オーダーブックの変更
+- 取引ティック
+- 価格変動
 
-### Scripted Evaluators
-These allow users to define custom logic in Python scripts that:
-- Can combine multiple data sources
-- Implement proprietary algorithms
-- Execute complex decision trees
+### スクリプト評価器
+これらはユーザーがPythonスクリプトでカスタムロジックを定義することを可能にします：
+- 複数のデータソースを組み合わせることができる
+- 独自のアルゴリズムを実装する
+- 複雑な決定木を実行する
 
-### Strategy Evaluators
-These combine signals from other evaluators to produce final trading decisions:
-- Weight different evaluator signals
-- Apply risk management rules
-- Generate final trading signals
+### 戦略評価器
+これらは他の評価器からのシグナルを組み合わせて最終的な取引決定を生成します：
+- 異なる評価器シグナルに重みを付ける
+- リスク管理ルールを適用する
+- 最終的な取引シグナルを生成する
 
-## Matrix System
-The matrix is a hierarchical data structure that organizes evaluation results by:
-- Exchange
-- Cryptocurrency
-- Symbol (trading pair)
-- Time frame
-- Evaluator type and name
+## マトリックスシステム
+マトリックスは、評価結果を以下によって整理する階層的なデータ構造です：
+- 取引所
+- 暗号通貨
+- シンボル（取引ペア）
+- 時間枠
+- 評価器タイプと名前
 
-This organization allows for efficient retrieval and aggregation of evaluation results.
+この編成により、評価結果の効率的な取得と集約が可能になります。
 
-## Usage Examples
+## 使用例
 
-### Creating a Simple Technical Analysis Evaluator
+### シンプルなテクニカル分析評価器の作成
 ```python
 class MyRSIEvaluator(TAEvaluator):
     def __init__(self, tentacles_setup_config):
@@ -129,38 +129,38 @@ class MyRSIEvaluator(TAEvaluator):
         self.period = 14
         
     async def eval_impl(self):
-        # Get the candles data
+        # キャンドルデータの取得
         candles = await self.get_exchange_symbol_data(self.exchange_name, 
                                                      self.symbol, 
                                                      self.time_frame)
         
-        # Calculate RSI
+        # RSIの計算
         close_prices = candles[common_constants.CANDLE_CLOSE]
         rsi_values = tulipy.rsi(close_prices, self.period)
         
-        # Determine evaluation based on RSI
+        # RSIに基づく評価の決定
         current_rsi = rsi_values[-1]
         if current_rsi < 30:
-            self.eval_note = 1  # Strong buy signal
+            self.eval_note = 1  # 強い買いシグナル
         elif current_rsi > 70:
-            self.eval_note = -1 # Strong sell signal
+            self.eval_note = -1 # 強い売りシグナル
         else:
-            self.eval_note = 0  # Neutral
+            self.eval_note = 0  # ニュートラル
             
-        # Publish evaluation
+        # 評価の公開
         await self.evaluation_completed(self.cryptocurrency, 
                                        self.symbol, 
                                        self.time_frame)
 ```
 
-### Creating a Strategy Evaluator
+### 戦略評価器の作成
 ```python
 class MySimpleStrategy(StrategyEvaluator):
     def __init__(self, tentacles_setup_config):
         super().__init__(tentacles_setup_config)
         
     async def eval_impl(self):
-        # Get evaluations from technical indicators
+        # テクニカル指標からの評価を取得
         rsi_eval = await self.get_evaluator_eval(self.cryptocurrency,
                                                 self.symbol,
                                                 self.time_frame,
@@ -171,11 +171,11 @@ class MySimpleStrategy(StrategyEvaluator):
                                                  self.time_frame,
                                                  "MyMACDEvaluator")
         
-        # Simple strategy: average the technical signals
+        # シンプルな戦略：テクニカルシグナルの平均
         if rsi_eval is not None and macd_eval is not None:
             self.eval_note = (rsi_eval + macd_eval) / 2
         
-        # Publish evaluation
+        # 評価の公開
         await self.evaluation_completed(self.cryptocurrency, 
                                        self.symbol, 
                                        self.time_frame)

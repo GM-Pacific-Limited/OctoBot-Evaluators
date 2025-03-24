@@ -1,33 +1,33 @@
-# OctoBot-Evaluators Modules
+# OctoBot-Evaluators モジュール
 
-## Evaluators
-The `evaluators` module contains all evaluator implementations:
-- `abstract_evaluator.py`: Base evaluator class and common functionality
-- `TA_evaluator.py`: Technical analysis evaluator
-- `scripted_evaluator.py`: Custom script evaluator
-- `strategy_evaluator.py`: Strategy implementation
-- `social_evaluator.py`: Social media analysis
-- `realtime_evaluator.py`: Real-time data analysis
-- `evaluator_factory.py`: Factory for creating evaluator instances
+## 評価器
+`evaluators`モジュールはすべての評価器実装を含みます：
+- `abstract_evaluator.py`：基本評価器クラスと共通機能
+- `TA_evaluator.py`：テクニカル分析評価器
+- `scripted_evaluator.py`：カスタムスクリプト評価器
+- `strategy_evaluator.py`：戦略実装
+- `social_evaluator.py`：ソーシャルメディア分析
+- `realtime_evaluator.py`：リアルタイムデータ分析
+- `evaluator_factory.py`：評価器インスタンス作成のファクトリー
 
-## Matrix
-The `matrix` module provides the data storage system:
-- `matrix.py`: Core matrix implementation
-- `matrix_manager.py`: Matrix management utilities
-- `matrices.py`: Singleton class managing multiple matrices
+## マトリックス
+`matrix`モジュールはデータストレージシステムを提供します：
+- `matrix.py`：コアマトリックス実装
+- `matrix_manager.py`：マトリックス管理ユーティリティ
+- `matrices.py`：複数のマトリックスを管理するシングルトンクラス
 
 ## API
-The `api` module offers public interfaces for external integration:
-- `evaluators.py`: API for managing evaluators
-- `initialization.py`: Setup functions
-- `matrix.py`: Matrix API
-- `inspection.py`: Analysis tools
+`api`モジュールは外部統合のための公開インターフェースを提供します：
+- `evaluators.py`：評価器管理用API
+- `initialization.py`：セットアップ関数
+- `matrix.py`：マトリックスAPI
+- `inspection.py`：分析ツール
 
-## Channels
-The `channel` module implements the communication system:
-- `evaluator_channel.py`: For evaluator signal distribution
-- `matrix_channel.py`: For matrix update notifications
+## チャネル
+`channel`モジュールは通信システムを実装します：
+- `evaluator_channel.py`：評価器シグナル配信用
+- `matrix_channel.py`：マトリックス更新通知用
 
-## Utilities
-The `util` module provides helper functions:
-- `evaluation_util.py`: Evaluation-related utilities
+## ユーティリティ
+`util`モジュールはヘルパー関数を提供します：
+- `evaluation_util.py`：評価関連ユーティリティ

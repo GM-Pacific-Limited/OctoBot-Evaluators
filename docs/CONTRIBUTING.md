@@ -1,33 +1,33 @@
-# Contributing to OctoBot-Evaluators
+# OctoBot-Evaluatorsへの貢献
 
-Thank you for considering contributing to OctoBot-Evaluators!
+OctoBot-Evaluatorsへの貢献をご検討いただき、ありがとうございます！
 
-## Coding Style
-- Follow PEP 8 guidelines
-- Use meaningful variable and function names
-- Include docstrings for all classes and methods
-- Write unit tests for new functionality
+## コーディングスタイル
+- PEP 8ガイドラインに従う
+- 意味のある変数名と関数名を使用する
+- すべてのクラスとメソッドにdocstringsを含める
+- 新機能にはユニットテストを書く
 
-## Development Process
-1. Fork the repository
-2. Create a feature branch
-3. Implement your changes
-4. Write or update tests
-5. Run the test suite
-6. Submit a pull request
+## 開発プロセス
+1. リポジトリをフォークする
+2. 機能ブランチを作成する
+3. 変更を実装する
+4. テストを書くか更新する
+5. テストスイートを実行する
+6. プルリクエストを提出する
 
-## Pull Request Process
-1. Update the README.md or documentation with details of changes if needed
-2. Update the CHANGELOG.md with details of changes
-3. The PR must pass all CI tests
-4. A maintainer will review and merge your PR
+## プルリクエストのプロセス
+1. 必要に応じて、README.mdまたはドキュメントに変更の詳細を更新する
+2. CHANGELOG.mdに変更の詳細を更新する
+3. PRはすべてのCIテストに合格する必要がある
+4. メンテナがPRをレビューしてマージする
 
-## Creating a New Evaluator
-1. Create a new class that inherits from the appropriate base evaluator class (`TAEvaluator`, `StrategyEvaluator`, etc.)
-2. Implement all required abstract methods
-3. Register the evaluator in the appropriate registry
-4. Write unit tests for your evaluator
-5. Update documentation
+## 新しい評価器の作成
+1. 適切な基本評価器クラス（`TAEvaluator`、`StrategyEvaluator`など）を継承する新しいクラスを作成する
+2. 必要なすべての抽象メソッドを実装する
+3. 適切なレジストリに評価器を登録する
+4. 評価器のユニットテストを書く
+5. ドキュメントを更新する
 
-## Questions?
-Feel free to open an issue if you have questions or need help!
+## 質問がありますか？
+質問やヘルプが必要な場合は、お気軽にissueを開いてください！
